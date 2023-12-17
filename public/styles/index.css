@@ -1,0 +1,360 @@
+html,body{
+    width:100%;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    font-family: Inter, 'Source Sans Pro';
+}
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#main_background{
+    width:100%;
+    height:100%;
+    background-image: url('../img/background.png'); 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5em 7em;
+    box-sizing: border-box;
+}
+header {
+   
+    color: #fff; /* White text */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    box-sizing: border-box;
+    width: 100%;
+  }
+  
+  .listMenu {
+    display: flex;
+    gap: 1em; /* Space between menu items */
+  }
+  .link--EN8{
+    color:red;
+  }
+  .link--EN8, .link--k5a, .link--TEt {
+
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+  font-weight: 500;
+  line-height: 1.813459268;
+  }
+  
+  .link--EN8:hover, .link--k5a:hover, .link--TEt:hover {
+    color: red; /* Light grey on hover */
+  }
+  
+  .divPhone_ButtonAppointment {
+    display: flex;
+  
+    font-weight: 500;
+    line-height: 1.813459268;
+    align-items: flex-end;
+  }
+  .time {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+  }
+  .time, .phone {
+    margin-bottom: 0.5em;
+    margin-right:15px;
+  }
+  
+  .buttonAppointment {
+    background-color: #ff0000; /* Red background */
+    color: #fff;
+    padding: 0.5em 1em;
+    border-radius:30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+    text-transform: uppercase;
+  }
+  
+  .buttonAppointment:hover {
+    background-color: #FF5722; /* Darker red on hover */
+  }
+
+  footer {
+ 
+    box-sizing: border-box;
+    color: #fff; /* White text */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+  }
+  
+  .divAddress {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between icon and text */
+  }
+  
+  .iconAddress {
+    /* Assuming you want the icons to be a specific size */
+    width: 20px; /* Set this to the size you need */
+    height: auto;
+  }
+  
+  .textAdress {
+    font-size: 0.9em; /* Adjust the size as needed */
+  }
+  
+  .iconMedia {
+    display: flex;
+    gap: 10px; /* Space between icons */
+  }
+  
+  .iconInsta, .iconFacebook {
+    width: 20px; /* Adjust width as needed */
+    height: auto;
+    cursor: pointer;
+  }
+  
+  /* Additional hover effects for interactivity */
+  .iconInsta:hover, .iconFacebook:hover {
+    opacity: 0.8;
+  }
+  
+  /* This ensures that the icons and text are vertically aligned in the middle */
+  .divAddress, .iconMedia {
+    display: flex;
+    align-items: center;
+  }
+  
+  .center {
+    display: flex;
+ 
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    box-sizing: border-box;
+    color: #fff; /* White text color */
+    
+  }
+  
+  .slagan_awards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Adjust the gap as needed */
+    margin-bottom: 20px; /* Space below the awards before the arrow */
+  }
+  
+  .divSlogan {
+    width: 100%; /* Slogan takes full width */
+    margin-bottom: 20px; /* Space between the slogan and the awards */
+  }
+  
+  .divSlogan img {
+    max-width: 35%; /* Ensures the image is responsive and fits the container */
+    height: auto; /* Keeps the aspect ratio of the image */
+  }
+  
+  .divAwards img {
+    width: 10%; /* Adjust width as needed */
+    height: auto; /* Adjust height as needed */
+    margin: 0 10px; /* Horizontal space between awards */
+  }
+  
+  /* Styling for the arrow image */
+  .center > img {
+    cursor: pointer; /* Changes the cursor to indicate the image is clickable */
+    padding: 10px; /* Adds space around the arrow for easier clicking */
+    width: 15px;
+    position: fixed;
+    right: 5em;
+
+  }
+  
+  /* Add a hover effect to the arrow for interactivity */
+  .center > img:hover {
+    opacity: 0.8; /* Slight transparency on hover */
+  }
+  
+
+  /* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+
+    border: 1px solid #888;
+    width: 480px;
+    height: 240px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    position: relative;
+  }
+  .windowForAppointment{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 4em;
+    position: relative;
+    top: -37px;
+    box-sizing: border-box;
+    justify-content: space-between;
+    align-content: flex-start;
+    align-items: center;
+
+  }
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    position: relative;
+    z-index: 1;
+    font-size: 30px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .appointment-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  
+  .appointment-option img {
+    width: 50px; /* Adjust size as needed */
+  }
+  
+  .buttonAppointment {
+    cursor: pointer;
+    /* other styling here */
+  }
+  a{
+    color: black;
+    text-decoration: none;
+
+  }
+
+
+  /* The Login Modal (background) */
+.login-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 2; /* Sit on top, higher index than other modals */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Login Modal Content */
+  .login-modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px; /* Could be more or less, depending on screen size */
+    position: relative;
+  }
+  
+  /* The Close Button */
+  .login-close {
+    position: absolute;
+    right: 15px;
+    top: 5px;
+    color: #000;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  /* Previous and Next buttons */
+  .login-prev, .login-next {
+    position: absolute;
+    top: 50%;
+    color: #000;
+    font-size: 24px;
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .login-prev { left: -30px; }
+  .login-next { right: -30px; }
+  
+  /* Input container */
+  .login-input-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .login-input-container img {
+    margin-right: 10px;
+  }
+  
+  .login-input-container input {
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 100%;
+  }
+  
+  /* Submit button */
+  .login-form button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  
+  /* Forgot password text */
+  .login-forgot-password {
+    color: #555;
+    font-size: 0.8em;
+    margin-top: 10px;
+  }
+  
+  /* Styling for the sign-in image */
+  #signIn {
+    cursor: pointer;
+  }
+
+  /* Add this class to your CSS */
+.blurred {
+    filter: blur(8px);
+  }
+  .listMenu a{
+    color:white;
+  }
+  
+  

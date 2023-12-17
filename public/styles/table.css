@@ -1,0 +1,59 @@
+#servicesTable {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 7px; /* Відступ між рядками */
+    margin-top: 20px;
+}
+
+#servicesTable th, #servicesTable td {
+    padding: 10px;
+    border: none; /* Видалення рамок */
+    background-color: transparent; /* Прозорий фон клітинок */
+    color: #fff; /* Світлий текст */
+}
+
+#servicesTable th {
+    background-color: #666; /* Світліший фон для заголовків */
+    color: #fff;
+}
+
+.service-image {
+    width: 100px;
+}
+
+.service-name {
+    font-weight: bold;
+    display: block; /* Назва послуги відображається як блок */
+}
+
+.service-description {
+    font-size: 0.9em;
+    color: #aaa; /* Світлий опис */
+    display: block; /* Опис відображається як блок під назвою */
+    padding-top: 5px; /* Відступ між назвою та описом */
+}
+
+/* Стилі для цін */
+.price-cell {
+    text-align: right;
+    font-weight: bold;
+    background-color: #5c5c5c; /* Світліший фон для клітинок з цінами */
+    padding: 5px;
+    color: #e0e0e0; /* Світлий текст ціни */
+}
+
+.category-label {
+    font-size: 0.8em;
+    color: #ccc;
+    font-style: italic;
+    margin-right: 5px; /* Відступ перед ціною */
+}
+
+/* Стилі для посилань */
+.link--EN8 {
+    color: white;
+}
+
+.link--TEt {
+    color: red;
+}
