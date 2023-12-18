@@ -1,19 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        /* You can add some styles here */
-    </style>
-    <script>
-        // You can add some JavaScript here
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Выбор мастера</title>
+<link rel="stylesheet" href="./styles/Appointment.css"/>
 </head>
 <body>
-    
-    <!-- Content goes here -->
-    
+<div id="bg"></div>
+<div class=" Main choiceMain">
+    <div class="choiceBarber"> 
+        <h1>Виберіть майстар</h1>
+        <p>Ми маємо фахівці чотири рівня. Кожен має свою ціну
+            . Якщо ви берете спеціаліста іншого рівня, ціна вказана.</p>
+        <div id="containBarber"> 
+            
+            <div class="barberCard">
+                
+                <span class="barberCardName" >Name</span>
+                <span class="barberCardCategory">Category</span>
+               
+            </div>
+            <div class="barberCard">
+                <span class="barberCardName" >Name</span>
+                <span class="barberCardCategory">Category</span>
+               
+            </div>
+            <div class="barberCard">
+                <span class="barberCardName" >Name</span>
+                <span class="barberCardCategory">Category</span>
+               
+            </div>
+            <div class="barberCard">
+                <span class="barberCardName" >Name</span>
+                <span class="barberCardCategory">Category</span>
+               
+            </div>
+            <div class="barberCard">
+                <span class="barberCardName" >Name</span>
+                <span class="barberCardCategory">Category</span>
+               
+            </div>
+        </div>
+       
+    </div>
+    <span id="butonNext">Далі</span>
+</div>
+<div class="Main checkMain">
+    <span>Деталі запису</span>
+    <table>
+        <tr>
+            <td>Фахівець</td>
+            <td>Старший Експерт Антон</td>
+        </tr>
+        <tr>
+            <td>Послуги</td>
+            <td>Моделювання бороди by London Grooming</td>
+        </tr>
+        <tr>
+            <td>Дата</td>
+            <td>Вставте дату тут</td>
+        </tr>
+        <tr>
+            <td>Час</td>
+            <td>Вставте час тут</td>
+        </tr>
+        <tr>
+            <td>До оплати</td>
+            <td>500.00 €</td>
+        </tr>
+    </table>
+</div>
+
+</div>
+<script src="./js/appointmentBarber.js"></script>
 </body>
 </html>

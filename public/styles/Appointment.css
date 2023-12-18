@@ -1,0 +1,144 @@
+
+body{
+    display:flex;
+    width: 100%;
+    margin:0;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+}
+html{
+    margin: 0;
+    height: 100%;
+}
+.Main{
+    width:50%;
+}
+#bg{
+    
+    width:100%;
+    height:100%;
+    background-image: url('../img/background.png'); 
+    position: fixed;
+    filter: blur(5px);
+    z-index: -2;
+  }
+ 
+  .imgBarberCard{
+    background-size: cover;
+    width:156px;
+    height:216px;
+  }
+  .checkMain{
+    background-color: white;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;;
+  }
+  .Main.checkMain {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding:100px;
+    text-align: start;
+    align-items: start;
+    box-sizing: border-box;
+    /* max-width: 600px; */
+    /* margin: auto;*/
+  }
+
+  .Main.checkMain span {
+    display: block;
+    font-size: 24px;
+    color: #000;
+    margin-bottom: 20px;
+    color: #999;
+    display: block;
+    padding-bottom: 18px;
+    font: italic 22px/24px "IBM Plex Serif", serif;
+  }
+
+  .Main.checkMain table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .Main.checkMain table td {
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+  }
+
+  /* Mimic the font styles from the screenshot */
+  .Main.checkMain table td:first-child {
+    font-weight: bold;
+    width: 150px;
+    font-weight: normal;
+    color: #999;
+    vertical-align: top;
+  }
+
+  .Main.checkMain table td:nth-child(2) {
+    text-align: right;
+  }
+
+  .choiceBarber p{
+    font-size: 14px;
+    line-height: 22px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .choiceBarber h1{
+    
+    
+    line-height: 22px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+  .choiceBarber{
+    text-align: start;
+    padding: 3em 9em;
+  }
+  .barberCard{
+
+    background-image: url('../img/BarberPage/backgrBarber1.png'); 
+    background-size: cover;
+    width:156px;
+    height:216px;
+    margin: 12px;
+    border-radius: 7px;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  .barberCard:hover{
+    border: 1px solid white;
+  }
+  .barberCardName{
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: white;
+
+  }
+  .barberCardCategory{
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+    font-weight: 400;
+  }
+  #containBarber{
+    display:flex;
+    flex-wrap: wrap;
+  }
+  #butonNext{
+    padding: 10px 60px;
+    background-color: #515151c2;
+    color: rgba(255, 255, 255, 0.3) !important;
+    border-radius: 10px;
+    font-size: 20px;
+  }
+.choiceMain{
+    text-align: center;
+}

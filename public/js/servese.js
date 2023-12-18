@@ -1,7 +1,10 @@
 var servicesData = [
-    { image_url: 'path/to/image1.png', name: 'Стрижка чоловіча', description: 'Виконується в комбінованих техніках машинками та ножицями...', trainee_price: 750, barber_price: 900, senior_barber_price: 1000, expert_price: 1100 },
-    { image_url: 'path/to/image2.png', name: 'Стрижка жіноча', description: 'Виконується за сучасними модними тенденціями...', trainee_price: 800, barber_price: 950, senior_barber_price: 1050, expert_price: 1150 },
-    { image_url: 'path/to/image3.png', name: 'Дитяча стрижка', description: 'Безпечні та веселі стрижки для дітей...', trainee_price: 500, barber_price: 650, senior_barber_price: 800, expert_price: 950 },
+    { image_url: './img/iconService/iconService (1).png', name: 'Стрижка чоловіча', description: 'Виконується в комбінованих техніках машинками та ножицями...', trainee_price: 750, barber_price: 900, senior_barber_price: 1000, expert_price: 1100 },
+    { image_url: './img/iconService/iconService (2).png', name: 'Стрижка жіноча', description: 'Виконується за сучасними модними тенденціями...', trainee_price: 800, barber_price: 950, senior_barber_price: 1050, expert_price: 1150 },
+    { image_url: './img/iconService/iconService (3).png', name: 'Дитяча стрижка', description: 'Безпечні та веселі стрижки для дітей...', trainee_price: 500, barber_price: 650, senior_barber_price: 800, expert_price: 950 },
+    { image_url: './img/iconService/iconService (1).png', name: 'Стрижка чоловіча', description: 'Виконується в комбінованих техніках машинками та ножицями...', trainee_price: 750, barber_price: 900, senior_barber_price: 1000, expert_price: 1100 },
+    { image_url: './img/iconService/iconService (2).png', name: 'Стрижка жіноча', description: 'Виконується за сучасними модними тенденціями...', trainee_price: 800, barber_price: 950, senior_barber_price: 1050, expert_price: 1150 },
+    { image_url: './img/iconService/iconService (3).png', name: 'Дитяча стрижка', description: 'Безпечні та веселі стрижки для дітей...', trainee_price: 500, barber_price: 650, senior_barber_price: 800, expert_price: 950 },
 ];
 
 
@@ -15,6 +18,8 @@ function populateTable(data) {
 
         var nameDescCell = row.insertCell();
         nameDescCell.rowSpan = 2;
+  
+        nameDescCell.style.textAlign='start';
         nameDescCell.innerHTML = '<span class="service-name">' + item.name + '</span><span class="service-description">' + item.description + '</span>';
 
         // Ціни для кожної категорії

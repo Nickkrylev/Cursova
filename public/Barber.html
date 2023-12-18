@@ -9,17 +9,17 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter%3A400%2C500%2C600"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400%2C500%2C600"/>
     <link rel="stylesheet" href="./styles/index.css"/>
-    <link rel="stylesheet" href="./styles/table.css"/>
+    <link rel="stylesheet" href="./styles/barber.css"/>
   </head>
   <body>
-    <div id="bg"></div>
+    <img src="" id="bgBarber">
     <div id="main_background">
         <header>
           
                 <div class="listMenu">
-                 <a href="index.html"> <div class="link--EN8">Головна</div></a>
-                 <a href="./Barber.html"><div class="link--k5a">Барбери</div></a>
-                 <div class="link--TEt">Послуги</div>
+                    <a href="./index.html"><div class="link--EN8">Головна</div></a>
+                  <div class="link--k5a">Барбери</div>
+                  <a href="./Services.html"><div class="link--TEt">Послуги</div></a>
                 </div>
                 
                 <div class="divPhone_ButtonAppointment">
@@ -31,12 +31,17 @@
               
         </header>
         <div class = 'center'>
-            <table id="servicesTable">
-              
-                <tbody>
-                    <!-- Заповнюється даними через JavaScript -->
-                </tbody>
-            </table>
+           <div id="textBarber">
+            <h1 id="nameBarber">Амбасадор Олександр</h1>
+            <div id="descriptionBarber">Мій райвал – допомагати іншим не боятися виражати свою індивідуальність, 
+                виявляти свою сутність у зовнішньому світі без стереотипів та оцінок. Адже мета нашого життя у самовираженні.</div>
+            <a href=""><img src="./img/BarberPage/footer.png" class="arrow" alt=""></a>
+           </div>
+           <div>
+            <img src="./img/BarberPage/arrowUp.png" class="arrow"id ="arrowUp" alt="">
+            <div><span id="curentNumber">0</span>/<span id="maxNumber">0</span></div>
+            <img src="./img/BarberPage/arrowDown.png" class="arrow" id="arrowDown" alt="">
+           </div>
             <img id='signIn' src="img/arrow.png" alt="">
 
         </div>
@@ -95,7 +100,7 @@
       <span class="login-next">&gt;</span>
     </div>
   </div>
-	<script src="js/servese.js"></script>
-    <script src="index.js"></script>
+	<script src="index.js"></script>
+    <script src="./js/barber.js"></script>
   </body>
 </html>
