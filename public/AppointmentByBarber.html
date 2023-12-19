@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Выбор мастера</title>
 <link rel="stylesheet" href="./styles/Appointment.css"/>
+<link rel="stylesheet" href="./styles/AppointmentbyBarber.css"/>
+<link rel="stylesheet" href="./styles/calendar.css"/>
 </head>
 <body>
 <div id="bg"></div>
@@ -21,58 +23,118 @@
                 <span class="barberCardCategory">Category</span>
                
             </div>
-            <div class="barberCard">
-                <span class="barberCardName" >Name</span>
-                <span class="barberCardCategory">Category</span>
-               
-            </div>
-            <div class="barberCard">
-                <span class="barberCardName" >Name</span>
-                <span class="barberCardCategory">Category</span>
-               
-            </div>
-            <div class="barberCard">
-                <span class="barberCardName" >Name</span>
-                <span class="barberCardCategory">Category</span>
-               
-            </div>
-            <div class="barberCard">
-                <span class="barberCardName" >Name</span>
-                <span class="barberCardCategory">Category</span>
-               
-            </div>
+          
         </div>
        
     </div>
-    <span id="butonNext">Далі</span>
+    <div class="choiceService"> 
+        <h1>Виберіть послуги</h1>
+        <div id="containService"> 
+            
+            <div class="serviceCard">
+                
+                <span class="serviceCardName" >Ми маємо фахівці чотири рівня. Кожен має свою ціну</span>
+                <span class="serviceCardPrice">100грн</span>
+                
+               
+            </div>
+            <div class="serviceCard">
+                
+                <span class="serviceCardName" >Ми маємо фахівці чотири рівня. Кожен має свою ціну</span>
+                <span class="serviceCardPrice">200грн</span>
+                
+               
+            </div>
+          
+        </div>
+       
+    </div>
+   
+    <div class="choiceData"> 
+  <h1>Виберіть дату запису</h1>
+    <div id="calendar-container">
+        <button id="prev-month">←</button>
+        <span id="month-year"></span>
+        <button id="next-month">→</button>
+        <table id="calendar">
+            
+        </table>
+    </div></div>
+    <div class="choiceTime"> 
+        <h1>Виберіть час запису</h1>
+        <div id="timeContainer">
+         
+        </div>
+        </div>
+        <div class="choiceForm"> 
+            <h1>Заповніть дані</h1>
+            <form>
+                <div class="form-group">
+                    <img src="./img/icon_person.png" class="icon" alt="Name">
+                    <input type="text" name="name" class="form-input" placeholder="Ваше ім'я">
+                </div>
+              
+                <div class="form-group">
+                    <img src="./img/icon_phone.png" class="icon" alt="Phone">
+                    <input type="tel" name="phone" class="form-input" placeholder="Номер телефону"><span class="required-dot">*</span>
+                </div>
+              
+                <div class="form-group">
+                    <img src="./img/icon_email.png" class="icon" alt="Email">
+                    <input type="email" name="email" class="form-input" placeholder="E-mail">
+                </div>
+              
+                <div class="form-group">
+                    <img src="./img/icon_cupon.png" class="icon" alt="Coupon">
+                    <input type="text" name="coupon" class="form-input" placeholder="Номер купона знижок">
+                </div>
+                <span id="mistakeForm"></span>
+            </form>
+            <span id="butonNextForm" click="validateForm" class="butonNextActive">далі</span>  
+        </div>
+        
+        
+    <span id="butonNext" class="butonNextNoActive">далі</span>
 </div>
 <div class="Main checkMain">
     <span>Деталі запису</span>
     <table>
         <tr>
             <td>Фахівець</td>
-            <td>Старший Експерт Антон</td>
+            <td id="selectedBarber"></td>
         </tr>
         <tr>
             <td>Послуги</td>
-            <td>Моделювання бороди by London Grooming</td>
+            <td id="selectedService"></td>
         </tr>
         <tr>
             <td>Дата</td>
-            <td>Вставте дату тут</td>
+            <td id="selectedData"></td>
         </tr>
         <tr>
             <td>Час</td>
-            <td>Вставте час тут</td>
+            <td id="selectedTime"></td>
         </tr>
         <tr>
             <td>До оплати</td>
-            <td>500.00 €</td>
+            <td id="selectedPrice"></td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:center; border: 0px;">
+                <button id="resetButton">cкинути</button>
+            </td>
         </tr>
     </table>
 </div>
 
 </div>
+<div class="close-button" onclick="window.location.href='index.html'">✖</div>
+<div class="back-arrow" onclick="window.history.back()">←</div>
 <script src="./js/appointmentBarber.js"></script>
+<script src="./js/appointmentService.js"></script>
+<script src="./js/appointmentCalendar.js"></script>
+<script src="./js/appointmentTime.js"></script>
+<script src="./js/appointmentForm.js"></script>
+<script src="./js/appointmentMain.js"></script>
 </body>
 </html>

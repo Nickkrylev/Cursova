@@ -1,0 +1,97 @@
+#calendar-container {
+    text-align: center;
+    border-radius: 10px;
+    padding: 20px;
+    display: inline-block;
+  }
+  
+  #calendar-container button {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white, matching the table */
+    color: #333; /* Dark text color to stand out on the light background */
+    border: 2px solid rgb(255 255 255 / 45%); /* Border color matching the table cells */
+    border-radius: 20px; /* Rounded corners */
+    padding: 10px 15px; /* Spacing inside the button */
+    font-size: 16px; /* Slightly larger text */
+    margin: 0 10px; /* Space between buttons */
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition for hover effect */
+    position: relative; /* Required for absolute positioning of the icon */
+    overflow: hidden; /* Ensures the*/
+  }
+  
+  #calendar-container button:hover {
+    background-color: #fff; /* Solid white on hover */
+    transform: scale(1.05); /* Slightly larger on hover */
+  }
+  #calendar-container button i, /* or the specific class you use for icons */
+  #calendar-container button svg {
+    font-size: 24px; /* Adjust the size as needed */
+    position: absolute; /* Position the icon absolutely within the button */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  #calendar-container button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: rgba(255, 255, 255, 0.5); /* More transparent when disabled */
+    border-color: rgba(255, 255, 255 / 25%); /* Lighter border for disabled state */
+  }
+  
+  #calendar-container table {
+    margin-top: 10px;
+    border-collapse: separate;
+    border-spacing: 5px;
+    background-color: transparent; /* Transparent background for the table */
+  }
+  
+  #calendar-container th {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: transparent; /* Removes background from weekday headers */
+    color: #333;
+    border: none; /* Removes borders from weekday headers */
+  }
+  
+  #calendar-container td {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 50%;
+    color: rgb(255 255 255 / 45%);
+    border: 2px solid rgb(255 255 255 / 45%);
+  }
+  
+  #calendar-container td:empty {
+    visibility: hidden; /* Hide empty cells */
+  }
+  
+  #calendar-container .current-day {
+    border: 2px solid red; /* Red border for the current day */
+  }
+  
+  #calendar-container #month-year {
+    color: white;
+  }
+   
+  .available-day {
+    color: white;
+    
+  }
+  
+  .available-day:hover {
+    border: 2px solid white;
+    cursor: pointer;
+  }
+  .choiceData{
+    text-align: start;
+    padding: 3em 0em 3em 9em;
+  }
+  
+  

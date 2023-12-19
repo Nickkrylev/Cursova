@@ -89,7 +89,7 @@ html{
     line-height: 22px;
     color: rgba(255, 255, 255, 0.5);
   }
-  .choiceBarber h1{
+   h1{
     
     
     line-height: 22px;
@@ -134,11 +134,207 @@ html{
   }
   #butonNext{
     padding: 10px 60px;
-    background-color: #515151c2;
-    color: rgba(255, 255, 255, 0.3) !important;
+   
     border-radius: 10px;
     font-size: 20px;
   }
 .choiceMain{
     text-align: center;
 }
+.selected{
+  border: 2px solid red;
+}
+.selected{
+  border: 2px solid red;
+}
+.butonNextActive{
+  background-color: red;
+  color: whitesmoke;
+}
+.butonNextActive:hover{
+  background-color: darkred;
+  color: whitesmoke;
+}
+.butonNextNoActive{
+  background-color: #515151c2;
+  color: rgba(255, 255, 255, 0.3) ;
+}
+
+/*Service*/
+.choiceService{
+  /*margin: 20px;*/
+  text-align: start;
+  padding: 3em 9em;
+}
+#containService{
+  color: white;
+  padding: 15px 5px;
+}
+.serviceCard{
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid #515151c2;
+  /* background-color: #515151c2; */
+  border-radius: 5px;
+  min-height: 60px;
+  display: block;
+  margin: 0 0 12px;
+  padding: 0 22px;
+  line-height: 56px;
+  float: none;
+}
+.serviceCard:hover{
+  border: 2px solid #fff;
+}
+.serviceCardName{
+  float: left;
+  font-weight: 500;
+  padding: 16px 0;
+  line-height: 24px;
+}
+.serviceCardPrice{
+  float: right;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: normal;
+}
+
+
+.choiceTime {
+ 
+  text-align: start;
+  padding: 3em 9em;
+ 
+  color: white; /* Білий текст */
+}
+
+
+
+#timeContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Чотири колонки */
+  gap: 10px; /* Відступи між елементами */
+}
+
+.time {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.1); /* Прозорий білий фон */
+  border-radius: 5px; /* Закруглені кути */
+  cursor: pointer; /* Курсор у формі пальця при наведенні */
+}
+
+.time:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Трохи більша прозорість при наведенні */
+}
+
+.time.selected {
+  background-color: white;
+  color: black;
+  border-color: red;
+}
+/* Припустимо, що елементи з класом .time мають клас .selected, коли вони вибрані */
+.time.selected {
+  background-color: rgba(255, 255, 255, 0.3); /* Ще більша прозорість для вибраного часу */
+}
+
+
+
+.form-input {
+  font-size: 20px;
+  background-color: #fff0;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 15px;
+  margin-bottom: 15px;
+  /* width: calc(100% - 30px); */
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-bottom: 2px solid black; /* Highlight color when focused */
+}
+
+.icon {
+  width: 40px;
+  
+  vertical-align: middle;
+  margin-right: 5px;
+}
+.appointment-link:hover{
+  background-color: #999;
+}
+.required-dot {
+  color: red;
+  vertical-align: super;
+  font-size: 80%;
+}
+form{
+  background-color: #ffffff9e;
+  border-radius: 20px;
+  padding: 40px 0px;
+  width:390px;
+  text-align: center;
+}
+.choiceForm{
+  /*text-align: start;*/
+  width: 390px;
+  padding: 3em 9em;
+}
+#mistakeForm{
+  color: red;
+}
+
+#butonNextForm {
+  margin: 10px;
+  margin-top:40px;
+  padding: 10px 60px;
+  border-radius: 10px;
+  font-size: 20px;
+}
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  font-size: 24px;
+  /* Дальнейшая стилизация по вашему усмотрению */
+}
+.back-arrow {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 35px;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  /* Анимация */
+  animation: arrowAnimation 1s ease-in-out infinite;
+}
+
+/* Ключевые кадры для анимации */
+@keyframes arrowAnimation {
+  0%, 100% { transform: translateY(-50%) translateX(0); }
+  50% { transform: translateY(-50%) translateX(10px); }
+}
+
+#resetButton {
+  background-color: #a52b2b; /* Зеленый фон */
+  color: white; /* Белый текст */
+  padding: 12px 20px; /* Внутренний отступ */
+  margin: 8px 0; /* Внешний отступ */
+  border: none; /* Без границ */
+  border-radius: 4px; /* Скругленные углы */
+  cursor: pointer; /* Стиль курсора при наведении */
+  font-size: 16px; /* Размер шрифта */
+}
+
+#resetButton:hover {
+  background-color: #6f2424; /* Немного темнее зеленого при наведении */
+}
+

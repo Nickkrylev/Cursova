@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Calendar</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  background-color: violet; /* Adjust the background color as needed */
+}
+
+#calendar-container {
+  text-align: center;
+  
+  border-radius: 10px;
+  padding: 20px;
+  display: inline-block;
+}
+
+button {
+  cursor: pointer;
+  background-color: #fff;
+  border: none;
+  padding: 5px 10px;
+  margin: 0 5px;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+table {
+  margin-top: 10px;
+  border-collapse: separate;
+  border-spacing: 5px;
+  background-color: transparent; /* Transparent background for the table */
+}
+
+th, td {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+th {
+  background-color: transparent; /* Removes background from weekday headers */
+  color: #333;
+  border: none; /* Removes borders from weekday headers */
+}
+
+
+
+td:empty {
+  visibility: hidden; /* Hide empty cells */
+}
+.current-day {
+  border: 2px solid red; /* Red border for the current day */
+}
+</style>
+</head>
+<body>
+
+<div id="calendar-container">
+    <button id="prev-month">←</button>
+    <span id="month-year"></span>
+    <button id="next-month">→</button>
+    <table id="calendar">
+        <!-- Calendar headings and days will be inserted by JavaScript -->
+    </table>
+</div>
+
+<script>
+let currentDate = new Date();
+let currentMonth = currentDate.getMonth();
+let currentYear = currentDate.getFullYear();
+const startMonth = new Date().getMonth();
+const startYear = new Date().getFullYear();
+function generateCalendar(month, year) {
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+                      "July", "August", "September", "October", "November", "December"];
+  document.getElementById('month-year').textContent = `${monthNames[month]} ${year}`;
+
+  const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  let calendar = '<tr>' + daysOfWeek.map(day => `<th>${day}</th>`).join('') + '</tr>';
+
+  let firstDay = new Date(year, month).getDay();
+  let daysInMonth = 32 - new Date(year, month, 32).getDate();
+
+  let date = 1;
+  let today = new Date();
+  for (let i = 0; i < 6; i++) {
+    calendar += '<tr>';
+    for (let j = 0; j < 7; j++) {
+      if (i === 0 && j < firstDay) {
+        calendar += '<td></td>';
+      } else if (date > daysInMonth) {
+        calendar += '<td></td>';
+      } else {
+        let cellDate = new Date(year, month, date);
+        let isToday = cellDate.toDateString() === today.toDateString() && month === today.getMonth() && year === today.getFullYear();
+        let classes = isToday ? ' class="current-day"' : '';
+        calendar += `<td${classes}>${date}</td>`;
+        date++;
+      }
+    }
+    calendar += '</tr>';
+  }
+
+  document.getElementById('calendar').innerHTML = calendar;
+}
+
+
+function updateNavigationButtons(month, year) {
+  const prevMonthButton = document.getElementById('prev-month');
+  const nextMonthButton = document.getElementById('next-month');
+  
+  // Calculate the difference in months from the start date
+  const monthDifference = (year - startYear) * 12 + (month - startMonth);
+  
+  // One month back
+  prevMonthButton.disabled = monthDifference <= 0;
+  
+  // Two months ahead
+  nextMonthButton.disabled = monthDifference >= 2;
+}
+
+document.getElementById('prev-month').addEventListener('click', () => {
+  currentMonth--;
+  if (currentMonth < 0) {
+    currentMonth = 11;
+    currentYear--;
+  }
+  generateCalendar(currentMonth, currentYear);
+  updateNavigationButtons(currentMonth, currentYear);
+});
+
+document.getElementById('next-month').addEventListener('click', () => {
+  currentMonth++;
+  if (currentMonth > 11) {
+    currentMonth = 0;
+    currentYear++;
+  }
+  generateCalendar(currentMonth, currentYear);
+  updateNavigationButtons(currentMonth, currentYear);
+});
+
+generateCalendar(currentMonth, currentYear);
+updateNavigationButtons(currentMonth, currentYear);
+</script>
+
+</body>
+</html>
