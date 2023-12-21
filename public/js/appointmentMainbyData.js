@@ -1,6 +1,6 @@
 
 let savedBarberId = sessionStorage.getItem('barberId');
-// Запрос к серверу для получения цен по категории
+
 
 document.addEventListener('DOMContentLoaded', function() {
     var currentIndex = 0;
@@ -12,10 +12,10 @@ document.addEventListener('DOMContentLoaded', function() {
            fetchBarber()
         }
         if (currentIndex === 1) {
-            fetchService()
+           fetchService()
          }
          if (currentIndex === 2) {
-            fetchData()
+            fetchTime()
          }
 
         if (this.classList.contains('butonNextActive')) {
@@ -42,6 +42,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let globalData = null;
     function fetchBarber(){
+    let selectedDate = sessionStorage.getItem('Date');
+
+fetch('/getAvaibleBarberinDay', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ date: selectedDate }),
+})
+.then(response => response.json())
+.then(data => {
+   
+
+    createBarberCards(data)
+})
+.catch(error => {
+    console.error('Error:', error);
+});
+    }
+    function fetchService(){
         let selectedCategory = sessionStorage.getItem('selectedCategory');
 console.log(selectedCategory)
 fetch('/getPricesByCategory', {
@@ -63,29 +83,10 @@ fetch('/getPricesByCategory', {
     console.error('Error:', error);
 });
     }
-    
 
-function fetchService(){
-    let selectedBarber = sessionStorage.getItem('barberId');
-fetch('/GetAvailableDaysForBarber', {
-    method: 'POST',
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ barberId: selectedBarber  }),
-})
-.then(response => response.json())
-.then(data => {
-    console.log(data);
 
-   console.log(createCalendar(data));
-})
-.catch(error => {
-    console.error('Error:', error);
-});
-    }
     
-function fetchData(){
+function fetchTime(){
     let selectedDate = sessionStorage.getItem('Date');
     let selectedBarber = sessionStorage.getItem('barberId');
    
@@ -134,3 +135,6 @@ fetch('/GetAvailableTime', {
         validateForm(); // Убедитесь, что функция validateForm() определена
     });
 });
+
+
+

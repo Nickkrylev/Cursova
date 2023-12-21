@@ -7,6 +7,18 @@ var servicesData = [
     { image_url: './img/iconService/iconService (3).png', name: 'Дитяча стрижка', description: 'Безпечні та веселі стрижки для дітей...', trainee_price: 500, barber_price: 650, senior_barber_price: 800, expert_price: 950 },
 ];
 
+fetch('/services_with_markup')
+  .then((response) => response.json())
+  .then((data) => {
+    // Отримані дані з сервера доступні в об'єкті "data"
+
+    console.log(data);
+    // Тут ви можете виконати інші дії з отриманими даними
+    populateTable(data);
+  })
+  .catch((error) => {
+    console.error('Помилка при отриманні даних:', error);
+  });
 
 function populateTable(data) {
     var tableBody = document.getElementById('servicesTable').getElementsByTagName('tbody')[0];
@@ -45,4 +57,3 @@ function populateTable(data) {
 
 
 // Виклик функції для заповнення таблиці
-populateTable(servicesData);

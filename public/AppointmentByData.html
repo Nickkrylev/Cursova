@@ -21,6 +21,25 @@
                   
               </table>
           </div></div>
+
+   
+   
+    <div class="choiceBarber"> 
+        <h1>Виберіть майстар</h1>
+        <p>Ми маємо фахівці чотири рівня. Кожен має свою ціну
+            . Якщо ви берете спеціаліста іншого рівня, ціна вказана.</p>
+        <div id="containBarber"> 
+            
+            <div class="barberCard">
+                
+                <span class="barberCardName" >Name</span>
+                <span class="barberCardCategory">Category</span>
+               
+            </div>
+          
+        </div>
+       
+    </div>
     <div class="choiceService"> 
         <h1>Виберіть послуги</h1>
         <div id="containService"> 
@@ -43,24 +62,6 @@
         </div>
        
     </div>
-   
-   
-    <div class="choiceBarber"> 
-        <h1>Виберіть майстар</h1>
-        <p>Ми маємо фахівці чотири рівня. Кожен має свою ціну
-            . Якщо ви берете спеціаліста іншого рівня, ціна вказана.</p>
-        <div id="containBarber"> 
-            
-            <div class="barberCard">
-                
-                <span class="barberCardName" >Name</span>
-                <span class="barberCardCategory">Category</span>
-               
-            </div>
-          
-        </div>
-       
-    </div>
     <div class="choiceTime"> 
         <h1>Виберіть час запису</h1>
         <div id="timeContainer">
@@ -69,7 +70,7 @@
         </div>
         <div class="choiceForm"> 
             <h1>Заповніть дані</h1>
-            <form>
+            <form id="clientForm">
                 <div class="form-group">
                     <img src="./img/icon_person.png" class="icon" alt="Name">
                     <input type="text" name="name" class="form-input" placeholder="Ваше ім'я">
@@ -91,11 +92,12 @@
                 </div>
                 <span id="mistakeForm"></span>
             </form>
-            <span id="butonNextForm" click="validateForm" class="butonNextActive">далі</span>  
+            <span id="butonNextForm" class="butonNextActive">далі</span>  
         </div>
         
         
-    <span id="butonNext" class="butonNextNoActive">далі</span>
+        
+
 </div>
 <div class="Main checkMain">
     <span>Деталі запису</span>
@@ -122,9 +124,12 @@
             <td id="selectedPrice"></td>
         </tr>
         <tr>
-            <td colspan="2" style="text-align:center; border: 0px;">
+            <td  style="text-align:center; border: 0px;">
                 <button id="resetButton">cкинути</button>
             </td>
+            <td>
+            <button id="butonNext" class="butonNextNoActive">далі</button>
+        </td>
         </tr>
     </table>
 </div>
@@ -132,11 +137,20 @@
 </div>
 <div class="close-button" onclick="window.location.href='index.html'">✖</div>
 <div class="back-arrow" onclick="window.history.back()">←</div>
+<div class='content'>
+    <div class="alert alert-success alert-white rounded">
+        <button type="button" class="close" aria-hidden="true">×</button>
+        <div class="icon"><i class="fa fa-check"></i></div>
+        <strong>Успішно!</strong> Ви успішно записалаись. На вашу пошту прийшло деталі запису
+    </div>
+</div>
 <script src="./js/appointmentBarber.js"></script>
 <script src="./js/appointmentService.js"></script>
-<script src="./js/appointmentCalendar.js"></script>
+<script src="./js/appointmentCalendarbyData.js"></script>
 <script src="./js/appointmentTime.js"></script>
 <script src="./js/appointmentForm.js"></script>
-<script src="./js/appointmentMain.js"></script>
+
+<script src="./js/appointmentMainbyData.js"></script>
+
 </body>
 </html>

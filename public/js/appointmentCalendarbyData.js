@@ -1,18 +1,38 @@
+// Assuming 'availableDates' is an array of Date objects representing available dates
+// You need to populate this array based on your SQL query results
 
- let clickDate = null;
    // Array of date strings
-function createCalendar(dateStrings){
-  console.log(dateStrings)
-  const availableDates = dateStrings.map(dateObj => {
-    const dateString = dateObj.date; // Извлекаем строку даты из объекта
-    const date = new Date(dateString);
+   function generateDateStrings() {
+    const today = new Date();
+    const currentMonth = today.getMonth();
+    const currentYear = today.getFullYear();
     
-    if (isNaN(date)) {
-      console.error("Invalid Date found:", dateString);
+    // Визначення останнього дня, який буде 21-е число наступного місяця
+    const nextMonth = currentMonth === 11 ? 0 : currentMonth + 1;
+    const nextMonthYear = currentMonth === 11 ? currentYear + 1 : currentYear;
+    const lastDay = new Date(nextMonthYear, nextMonth, 21);
+
+    let date = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    let dateStrings = [];
+
+    while (date <= lastDay) {
+        dateStrings.push(date.toISOString().split('T')[0]);
+        date.setDate(date.getDate() + 1);
     }
-  
-    return date;
-  });
+
+    return dateStrings;
+}
+const dateStrings = generateDateStrings() ;
+dateStrings.shift()
+
+const availableDates = dateStrings.map(dateStr => {
+  const dateParts = dateStr.split('-');
+  const year = parseInt(dateParts[0], 10);
+  const month = parseInt(dateParts[1], 10) - 1; // Subtract 1 because months are 0-indexed
+  const day = parseInt(dateParts[2], 10);
+
+  return new Date(year, month, day);
+});
 
 function isDateAvailable(date) {
   return availableDates.some(availableDate => 
@@ -23,12 +43,11 @@ function isDateAvailable(date) {
 }
 
 function generateCalendar(month, year) {
-  const monthNames = ["Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень",
-  "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень"];
-document.getElementById('month-year').textContent = `${monthNames[month]} ${year}`;
-
-const daysOfWeek = ['Нед', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
-
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+                        "July", "August", "September", "October", "November", "December"];
+    document.getElementById('month-year').textContent = `${monthNames[month]} ${year}`;
+  
+    const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     let calendar = '<tr>' + daysOfWeek.map(day => `<th>${day}</th>`).join('') + '</tr>';
   
     let firstDay = new Date(year, month).getDay();
@@ -77,16 +96,16 @@ const daysOfWeek = ['Нед', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'];
         this.style.backgroundColor = "white";
         document.getElementById('butonNext').classList.remove('butonNextNoActive');
         document.getElementById('butonNext').classList.add('butonNextActive');
-        clickDate = new Date(this.getAttribute('data-date'));
-        const selectedDate = clickDate;
+        const selectedDate = new Date(this.getAttribute('data-date'));
         document.getElementById('selectedData').textContent = formatDate(selectedDate);
-        const dateObject = new Date(clickDate);
+        const dateObject = new Date(selectedDate);
         const year = dateObject.getFullYear();
         const month = String(dateObject.getMonth() + 1).padStart(2, '0'); // Додаємо 1, так як місяці в JavaScript починаються з 0
         const day = String(dateObject.getDate()).padStart(2, '0');
         
         const formattedDate = `${year}-${month}-${day}`;
         sessionStorage.setItem('Date', formattedDate);
+       
       });
     });
   }
@@ -145,6 +164,3 @@ const startYear = new Date().getFullYear();
 
 generateCalendar(currentMonth, currentYear);
 updateNavigationButtons(currentMonth, currentYear);
-return clickDate;
-}
-

@@ -1,62 +1,92 @@
-// Assuming `data` is the array of objects returned from the database query
-Example: data = [{ first_name: 'John', category_name: 'Stylist', photo_url: './img/BarberPage/backgrBarber1.png'},
-{ first_name: 'John2', category_name: 'Stylist2', photo_url: './img/BarberPage/backgrBarber2.png'}]
 
+
+// Function to create barber cards
 function createBarberCards(data) {
-    const container = document.getElementById('containBarber');
-    
-    // Clear existing content
-    container.innerHTML = '';
-    
-    // Create a card for each barber
-    data.forEach(barber => {
-        const card = document.createElement('div');
-        card.className = 'barberCard';
-        card.style.backgroundImage = `url('${barber.photo_url}')`;
+  const container = document.getElementById('containBarber');
+  container.innerHTML = ''; // Clear existing content
 
-        const nameSpan = document.createElement('span');
-        nameSpan.className = 'barberCardName';
-        nameSpan.textContent = barber.first_name;
+  const barberCategoryMap = {
+    "trainee": "Стажор",
+    "senior_barber": "Старший барбер",
+    "barber": "Барбер",
+    "expert": "Експерт"
+  }
 
-        const categorySpan = document.createElement('span');
-        categorySpan.className = 'barberCardCategory';
-        categorySpan.textContent = barber.category_name;
+  // Create a card for each barber
+  data.forEach(barber => {
+    const card = document.createElement('div');
+    card.className = 'barberCard';
+    card.style.backgroundImage = `url('${barber.photo_url}')`;
+    card.setAttribute('data-category', barber.category_name); // Store the category in the card
+    card.setAttribute('data-barber-id', barber.barber_id); 
+    card.addEventListener('click', handleBarberCardClick); // Attach event listener
 
-        card.appendChild(nameSpan);
-        card.appendChild(categorySpan);
+    const nameSpan = document.createElement('span');
+    nameSpan.className = 'barberCardName';
+    nameSpan.textContent = barber.first_name;
 
-        // Append the card to the container
-        container.appendChild(card);
-    });
+    const categorySpan = document.createElement('span');
+    categorySpan.className = 'barberCardCategory';
+    categorySpan.textContent = barberCategoryMap[barber.category_name];
+
+    card.appendChild(nameSpan);
+    card.appendChild(categorySpan);
+
+    container.appendChild(card); // Append the card to the container
+  });
 }
-createBarberCards(data);
-
-
-
-
 
 // Function to handle the click event on a barber card
 function handleBarberCardClick(event) {
-    // Find the closest parent with the class 'barberCard'
-    document.querySelectorAll('.barberCard').forEach(function(card) {
-        card.classList.remove('selected');
-      });
-    var barberCard = event.currentTarget;
-    
-    // Get the name and category from the clicked card
-    var name = barberCard.querySelector('.barberCardName').textContent;
-    var category = barberCard.querySelector('.barberCardCategory').textContent;
-    barberCard.classList.add('selected');
-    // Update the table with the barber's name and category
-    document.getElementById('selectedBarber').textContent = category + ' ' + name;
-    
-    document.getElementById('butonNext').classList.remove('butonNextNoActive');
-    document.getElementById('butonNext').classList.add('butonNextActive');
-  }
+  const barberCard = event.currentTarget; // Get the clicked .barberCard element
+  const selectedCategory = barberCard.getAttribute('data-category'); // Get the category from the card
+
+  // Update the UI based on the selected barber
+  updateSelectedBarberUI(barberCard);
   
-  // Add click event listeners to all barberCard elements
-  document.querySelectorAll('.barberCard').forEach(function(barberCard) {
-    barberCard.addEventListener('click', handleBarberCardClick);
+  const barberId = barberCard.getAttribute('data-barber-id'); // или любой другой способ получения идентификатора парикмахера
+  
+  // Сохранение selectedCategory и barberId в sessionStorage
+  sessionStorage.setItem('selectedCategory', selectedCategory);
+  sessionStorage.setItem('barberId', barberId);
+  // Fetch prices for the selected category
+  // fetch('/getPricesByCategory', {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: JSON.stringify({ category: selectedCategory }), // Send the selected category
+  // })
+  // .then(response => response.json())
+  // .then(data => {
+  //   // Handle the data received from the database
+  //   console.log(data);
+  // })
+  // .catch(error => {
+  //   console.error('Error:', error);
+  // });
+}
+
+// Function to update UI based on the selected barber
+function updateSelectedBarberUI(barberCard) {
+  const name = barberCard.querySelector('.barberCardName').textContent;
+  const category = barberCard.querySelector('.barberCardCategory').textContent;
+  
+  // Remove 'selected' class from all cards
+  document.querySelectorAll('.barberCard.selected').forEach(selectedCard => {
+    selectedCard.classList.remove('selected');
   });
 
-  
+  // Add 'selected' class to the clicked card
+  barberCard.classList.add('selected');
+
+  // Update the display with the clicked barber's details
+  document.getElementById('selectedBarber').textContent = `${category} ${name}`;
+
+  // Change the button classes to reflect the active state
+  const buttonNext = document.getElementById('butonNext');
+  buttonNext.classList.remove('butonNextNoActive');
+  buttonNext.classList.add('butonNextActive');
+}
+
+

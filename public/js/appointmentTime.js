@@ -7,7 +7,7 @@ function createTimeSlots(times) {
     times.forEach(time => {
       const timeDiv = document.createElement('div');
       timeDiv.className = 'time';
-      timeDiv.textContent = time;
+      timeDiv.textContent = time.formattedTime;
       timeDiv.addEventListener('click', handleTimeClick);
       timeContainer.appendChild(timeDiv);
     });
@@ -27,7 +27,8 @@ function createTimeSlots(times) {
   
     // Update the selectedTime with the clicked time slot's value
     document.getElementById('selectedTime').textContent = event.currentTarget.textContent;
+    sessionStorage.setItem("selctedTime",event.currentTarget.textContent);
   }
   
   // Call the function to generate time slots
-  createTimeSlots(times);
+ 

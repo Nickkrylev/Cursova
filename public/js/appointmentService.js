@@ -1,22 +1,5 @@
-const servicesData = [
-    {
-        description: "Стрижка волосся класична",
-        price: "100"
-    },
-    {
-        description: "Стрижка волосся модна",
-        price: "200"
-    },
-    {
-        description: "Королівське гоління",
-        price: "150"
-    },
-    {
-        description: "Камуфлювання сивини",
-        price: "120"
-    }
-    // Додайте інші послуги за бажанням
-];
+//const servicesData =  sessionStorage.getItem('selectedCategory');
+
 function createServiceCards(data) {
     const container = document.getElementById('containService');
     
@@ -30,28 +13,31 @@ function createServiceCards(data) {
 
         const nameSpan = document.createElement('span');
         nameSpan.className = 'serviceCardName';
-        nameSpan.textContent = service.description; // assuming 'description' is the property for service description
+        nameSpan.textContent = service.name; // assuming 'description' is the property for service description
 
         const priceSpan = document.createElement('span');
         priceSpan.className = 'serviceCardPrice';
-        priceSpan.textContent = `${service.price}грн`; // assuming 'price' is the property for service price
-
+        priceSpan.textContent = `${service.price_with_markup}грн`; // assuming 'price' is the property for service price
+        card.setAttribute('serdice-id', service.service_id);
         card.appendChild(nameSpan);
         card.appendChild(priceSpan);
 
         // Append the card to the container
         container.appendChild(card);
+        // document.querySelectorAll('.serviceCard').forEach(function(serviceCard) {
+        //   serviceCard.addEventListener('click', handleServiceCardClick);
+        // });
+        card.addEventListener('click', handleServiceCardClick);
     });
 }
 
 // Use this function with your data array like this:
 // createServiceCards(servicesData);
 
-// Виклик функції:
-createServiceCards(servicesData);
 
 // Функция для обработки события клика по карточке услуги
 function handleServiceCardClick(event) {
+    const selectedService = event.currentTarget.getAttribute('serdice-id')
     // Удаление класса 'selected' у всех карточек услуг
     document.querySelectorAll('.serviceCard').forEach(function(card) {
       card.classList.remove('selected');
@@ -59,7 +45,7 @@ function handleServiceCardClick(event) {
   
     // Добавление класса 'selected' к кликнутой карточке услуг
     event.currentTarget.classList.add('selected');
-  
+    
     // Получение названия и цены из кликнутой карточки
     var serviceName = event.currentTarget.querySelector('.serviceCardName').textContent;
     var servicePrice = event.currentTarget.querySelector('.serviceCardPrice').textContent;
@@ -69,9 +55,8 @@ function handleServiceCardClick(event) {
     document.getElementById('selectedPrice').textContent = servicePrice;
        document.getElementById('butonNext').classList.remove('butonNextNoActive');
     document.getElementById('butonNext').classList.add('butonNextActive');
+    sessionStorage.setItem("serveceId",selectedService);
   }
   
   // Добавление обработчиков событий клика ко всем карточкам услуг
-  document.querySelectorAll('.serviceCard').forEach(function(serviceCard) {
-    serviceCard.addEventListener('click', handleServiceCardClick);
-  });
+  

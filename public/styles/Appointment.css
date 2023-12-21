@@ -1,4 +1,4 @@
-
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
 body{
     display:flex;
     width: 100%;
@@ -37,6 +37,8 @@ html{
     flex-direction: column;;
   }
   .Main.checkMain {
+    position: fixed;
+    right: 0px;
     font-family: 'Arial', sans-serif;
     color: #333;
     background-color: #fff;
@@ -102,9 +104,11 @@ html{
   .barberCard{
 
     background-image: url('../img/BarberPage/backgrBarber1.png'); 
+
     background-size: cover;
-    width:156px;
-    height:216px;
+    background-position: center;
+    width: 156px;
+    height: 216px;
     margin: 12px;
     border-radius: 7px;
     z-index: 1;
@@ -134,7 +138,7 @@ html{
   }
   #butonNext{
     padding: 10px 60px;
-   
+    
     border-radius: 10px;
     font-size: 20px;
   }
@@ -337,4 +341,95 @@ form{
 #resetButton:hover {
   background-color: #6f2424; /* Немного темнее зеленого при наведении */
 }
+
+.content {
+  font-family: 'Open Sans', sans-serif;
+
+  padding: 0;
+  width: 300px;
+  padding: 10px;
+  position: fixed;
+  bottom: 20px;
+  z-index: 10;
+  left: 30px;
+  display: none;
+}
+
+.alert {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  position: relative;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.11);
+}
+
+.close {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  padding: 15px;
+  font-size: 21px;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+.close:hover {
+  color: #000;
+  opacity: 0.5;
+}
+
+.alert-success {
+  background-color: #dbf6d3;
+  border-color: #aed4a5;
+  color: #569745;
+}
+
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.fa-check {
+  font-size: 20px;
+  color: #569745;
+}
+
+/* Анімація для появи сповіщення */
+@keyframes slideIn {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Анімація для зникнення сповіщення */
+@keyframes slideOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+}
+
+.content {
+  animation: slideIn 0.5 ease-out forwards;
+}
+
+.content.hide {
+  animation: slideOut 0.5s ease-in forwards;
+}
+
+
 

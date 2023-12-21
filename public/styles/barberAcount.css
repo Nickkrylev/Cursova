@@ -4,7 +4,7 @@ html,body{
     height:100%;
     margin:0px;
     padding:0px;
-    font-family: Inter, 'Source Sans Pro';
+    font-family: 'Courier New', Courier, monospace;
 }
 body{
     display: flex;
@@ -14,7 +14,8 @@ body{
     
     width:100%;
     height:100%;
-    background-image: url('../img/background2.png'); 
+    background-color: #3f3f3fad;
+    /*background-image: url('../img/backBarber.png'); */
     position: fixed;
     filter: blur(5px);
     z-index: -2;
@@ -25,6 +26,7 @@ body{
     background: #1c1c1cc7; /* фон, похожий на загруженное изображение */
     color: white; /* цвет текста, как на изображении */
     padding: 20px;
+    width: fit-content;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* добавляем немного тени для глубины */
     margin-bottom: 20px;
@@ -39,7 +41,9 @@ body{
 .appointment-info {
     display: flex;
     flex-direction: column;
+    text-align: left;
     justify-content: space-around;
+    font-size: larger;
 }
 .appointment-person h2{
     display: inline;
@@ -108,7 +112,7 @@ body{
 .choiceTime {
  
     text-align: start;
-    padding: 3em 9em;
+    width: 50%;
    
     color: white; /* Білий текст */
   }
@@ -127,7 +131,7 @@ body{
     align-items: center;
     padding: 10px;
     cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.1); /* Прозорий білий фон */
+    background-color: rgb(0 0 0 / 35%);
     border-radius: 5px; /* Закруглені кути */
     cursor: pointer; /* Курсор у формі пальця при наведенні */
   }
@@ -145,4 +149,119 @@ body{
   .time.selected {
     background-color: rgba(255, 255, 255, 0.3); /* Ще більша прозорість для вибраного часу */
   }
+  .calendarAndCard{
+     
+     text-align: center;
+  }
+  .CardAndTime{
+    display: flex;
+
+  }
+
+
+  
+header {
+    font-size: 20px;
+    font-weight: bolder;
+    background-color: #0000008f;
+    color: #fff; /* White text */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 100px;;
+    box-sizing: border-box;
+    width: 100%;
+  }
+  
+  .listMenu {
+    display: flex;
+    gap: 1em; /* Space between menu items */
+  }
+  .link--EN8{
+    color:red;
+  }
+  .link--EN8, .link--k5a, .link--TEt {
+
+    cursor: pointer;
+    transition: color 0.3s ease;
+    font-weight: bolder;
+    line-height: 1.813459268;
+  }
+  a{
+    text-decoration: none;
+    color: aliceblue;
+  }
+  
+  .link--EN8:hover, .link--k5a:hover, .link--TEt:hover {
+    color: red; /* Light grey on hover */
+  }
+  
+  .divPhone_ButtonAppointment {
+    display: flex;
+  
+    font-weight: 500;
+    line-height: 1.813459268;
+    align-items: flex-end;
+  }
+  .timeHeader {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+  }
+  .timeHeader, .phone {
+    margin-bottom: 0.5em;
+    margin-right:15px;
+  }
+  
+  .buttonAppointment {
+    background-color: #ff0000ae; /* Red background */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius:10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: none;
+    text-transform: uppercase;
+  }
+  
+  .buttonAppointment:hover {
+    background-color: #FF5722; /* Darker red on hover */
+  }
+  .choiceService{
+    /*margin: 20px;*/
+    text-align: start;
+    padding: 3em 9em;
+  }
+  #containService{
+    color: white;
+    padding: 15px 5px;
+  }
+  .serviceCard{
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    border: 2px solid #515151c2;
+    /* background-color: #515151c2; */
+    border-radius: 5px;
+    min-height: 60px;
+    display: block;
+    margin: 0 0 12px;
+    padding: 0 22px;
+    line-height: 56px;
+    float: none;
+  }
+  .serviceCard:hover{
+    border: 2px solid #fff;
+  }
+  .serviceCardName{
+    float: left;
+    font-weight: 500;
+    padding: 16px 0;
+    line-height: 24px;
+  }
+  .serviceCardPrice{
+    float: right;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: normal;
+  }
+  
   

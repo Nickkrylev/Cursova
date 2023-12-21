@@ -1,30 +1,23 @@
+let barbers; // Оголошуємо змінну для зберігання отриманих даних
+
+fetch('/barber_details')
+  .then((response) => response.json())
+  .then((data) => {
+    // Отримані дані з сервера доступні в об'єкті "data"
+    barbers = data; // Зберігаємо дані в змінну "barbers"
+    console.log(barbers); // Виводимо дані в консоль
+
+    // Викликаємо функцію для відображення даних після отримання
+    updateBarberDisplay();
+  })
+  .catch((error) => {
+    console.error('Помилка при отриманні даних:', error);
+  });
 let currentBarberIndex = 0;
-const barbers = [
-    {
-        first_name: "Олександр",
-        category_name: "senior_barber",
-        description: "Досвідчений майстер, який спеціалізується на класичних та сучасних стрижках.",
-        photo_url: "./img/BarberPage/backgrBarber1.png",
-        instagram_link: "https://www.instagram.com/oleksandr_barber"
-    },
-    {
-        first_name: "Іван",
-        category_name: "barber",
-        description: "Іван відомий своїм вмінням створювати ідеальні бороди та укладання.",
-        photo_url: "./img/BarberPage/backgrBarber2.png",
-        instagram_link: "https://www.instagram.com/ivan_barber"
-    },
-    {
-        first_name: "Михайло",
-        category_name: "expert",
-        description: "Михайло - експерт у творчих стрижках та стильних зачісках.",
-        photo_url: "./img/BarberPage/backgrBarber3.png",
-        instagram_link: "https://www.instagram.com/mykhailo_barber"
-    }
-    // Добавьте больше объектов по мере необходимости
-];
+
 
 const barberCategory = {
+    "trainee":"Стажор",
     "senior_barber":"Старший барбер",
     "barber":"Барбер",
     "expert":"Експерт"
