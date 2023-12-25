@@ -1,7 +1,19 @@
 
 let savedBarberId = sessionStorage.getItem('barberId');
-// Запрос к серверу для получения цен по категории
 
+fetch('/barber_details')
+  .then((response) => response.json())
+  .then((data) => {
+    // Отримані дані з сервера доступні в об'єкті "data"
+    barbers = data; // Зберігаємо дані в змінну "barbers"
+    console.log(barbers); // Виводимо дані в консоль
+
+    // Викликаємо функцію для відображення даних після отримання
+    createBarberCards(data)
+  })
+  .catch((error) => {
+    console.error('Помилка при отриманні даних:', error);
+  });
 document.addEventListener('DOMContentLoaded', function() {
     var currentIndex = 0;
     var sections = document.querySelectorAll('.Main > div');
@@ -100,7 +112,7 @@ fetch('/GetAvailableTime', {
 .then(data => {
     console.log(data);
 
-    createTimeSlots(data);
+  createTimeSlots(data);
 })
 .catch(error => {
     console.error('Error:', error);

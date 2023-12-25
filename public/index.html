@@ -84,14 +84,14 @@
     <!-- Login Modal Content -->
     <div class="login-modal-content">
       <span class="login-close">&times;</span>
-      <form class="login-form">
+      <form class="login-form" id="loginForm">
         <div class="login-input-container">
-          <img src="img/icon_email.png" class = "icon" alt="Email">
-          <input type="email" placeholder="e-mail" required>
+          <img src="img/icon_email.png" class="icon" alt="Email">
+          <input type="email" id="email" placeholder="e-mail" required>
         </div>
         <div class="login-input-container">
-          <img src="img/icon_password.png " class = "icon"alt="Password">
-          <input type="password" placeholder="пароль" required>
+          <img src="img/icon_password.png" class="icon" alt="Password">
+          <input type="password" id="password" placeholder="пароль" required>
         </div>
         <button type="submit">Увійти</button>
         <p class="login-forgot-password">Забули пароль?</p>
@@ -101,5 +101,6 @@
     </div>
   </div>
 	<script src="index.js"></script>
+  <script src="./js/loginForBarber.js"></script>
   </body>
 </html>

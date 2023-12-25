@@ -50,21 +50,7 @@ function handleBarberCardClick(event) {
   sessionStorage.setItem('selectedCategory', selectedCategory);
   sessionStorage.setItem('barberId', barberId);
   // Fetch prices for the selected category
-  // fetch('/getPricesByCategory', {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //   },
-  //   body: JSON.stringify({ category: selectedCategory }), // Send the selected category
-  // })
-  // .then(response => response.json())
-  // .then(data => {
-  //   // Handle the data received from the database
-  //   console.log(data);
-  // })
-  // .catch(error => {
-  //   console.error('Error:', error);
-  // });
+ 
 }
 
 // Function to update UI based on the selected barber

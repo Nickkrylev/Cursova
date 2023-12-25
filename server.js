@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const db_connection = require('./db_conect.js');
+const session = require('express-session');
 const transporter = require('./email_config');
 
 const app = express();
@@ -17,6 +18,14 @@ db_connection.connect((err) => {
   });
 
 app.use(express.static('public'));
+// Настройка сессии
+app.use(session({
+  secret: 'barberkey', // Замените на свой секретный ключ
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // Для HTTPS установите в true
+}));
+
 
 app.get('/', function (req, res) {
     const options = {
@@ -117,6 +126,45 @@ app.post('/getAvaibleBarberinDay', (req, res) => {
  
    
 });
+// ... (остальная часть кода)
+
+app.post('/CheckLogin', (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  console.log(email,password);
+  db_connection.query("CALL CheckBarberLogin(?, ?);", [email, password], (error, results, fields) => {
+      if (error) {
+          console.error('Error:', error);
+          res.status(500).send('Internal Server Error');
+          return;
+      }
+      console.log(results[0]);
+      // Проверяем, есть ли пользователь с такими данными
+      if (results[0][0].IsValidLogin === 1) {
+          // Пользователь найден, создаем для него сессию
+          req.session.user = { id: results[0][0].id, email: email };
+          res.json({ success: true });
+      } else {
+          // Пользователь не найден
+          res.json({ success: false });
+      }
+  });
+});
+
+app.get('/barberAcount.html', checkAuth, (req, res) => {
+  res.sendFile(path.join(__dirname, 'security', 'barberAcount.html'));
+});
+
+// Функция для проверки аутентификации пользователя
+function checkAuth(req, res, next) {
+  if (!req.session.user) {
+      res.status(401).send('Необхідно увійти в систему');
+  } else {
+      next();
+  }
+}
+
+// ... (остальная часть кода)
 
 app.post('/SendForm', (req, res) => {
   const { barberId, serviceId, phone, email, name, date, time } = req.body;

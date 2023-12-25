@@ -58,40 +58,38 @@
             </div>
         </footer>
 
-        <!-- The Modal -->
-<div id="myModal" class="modal">
-    <!-- Modal content -->
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <div class="windowForAppointment">
-        <a href="./AppointmentByBarber.html">
-        <div class="appointment-option">
-          <img src="https://rival.team/images/barber_check.svg" alt="">
-          <p>Я хочу до певного майстра</p>
+        <div id="myModal" class="modal">
+          <!-- Modal content -->
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="windowForAppointment">
+              <a class="appointment-link" href="./AppointmentByBarber.html">
+              <div class="appointment-option">
+                <img  style="width: 44px;; height: 54px;;"src="https://rival.team/images/barber_check.svg" alt="">
+                <p>Я хочу до певного майстра</p>
+              </div>
+          </a>
+          <a class="appointment-link" href="./AppointmentByData.html">
+              <div class="appointment-option">
+                <img style="width:30px; height:49px;"src="https://rival.team/images/calendar.svg" alt="">
+                <p>Я хочу на певну дату</p>
+              </div>
+          </a>
+            </div>
+          </div>
         </div>
-    </a>
-    <a href="./AppointmentByData.html">
-        <div class="appointment-option">
-          <img src="https://rival.team/images/calendar.svg" alt="">
-          <p>Я хочу на певну дату</p>
-        </div>
-    </a>
-      </div>
-    </div>
-  </div>
-
   <div id="loginModal" class="login-modal">
     <!-- Login Modal Content -->
     <div class="login-modal-content">
       <span class="login-close">&times;</span>
-      <form class="login-form">
+      <form class="login-form" id="loginForm">
         <div class="login-input-container">
-          <img src="img/email_icon.png" alt="Email">
-          <input type="email" placeholder="e-mail" required>
+          <img src="img/icon_email.png" class="icon" alt="Email">
+          <input type="email" id="email" placeholder="e-mail" required>
         </div>
         <div class="login-input-container">
-          <img src="img/lock_icon.png" alt="Password">
-          <input type="password" placeholder="пароль" required>
+          <img src="img/icon_password.png" class="icon" alt="Password">
+          <input type="password" id="password" placeholder="пароль" required>
         </div>
         <button type="submit">Увійти</button>
         <p class="login-forgot-password">Забули пароль?</p>
@@ -102,5 +100,6 @@
   </div>
 	<script src="index.js"></script>
     <script src="./js/barber.js"></script>
+    <script src="./js/loginForBarber.js"></script>
   </body>
 </html>
