@@ -92,6 +92,23 @@ app.post('/GetAvailableDaysForBarber', (req, res) => {
  
    
 });
+app.post('/GetBusyDaysForBarber', (req, res) => {
+  const barberId = req.body.barberId;
+
+
+      db_connection.query('CALL GetBusyDaysForBarber(?);', [barberId], (error, results, fields) => {
+          if (error) {
+              console.error('Error:', error);
+              res.status(500).send('Internal Server Error');
+              return;
+          }
+  
+          // Assuming the results are in the first element of the returned array
+          res.json(results[0]);
+      });
+ 
+   
+});
 app.post('/GetAvailableTime', (req, res) => {
   const barberId = req.body.barberId;
   const date = req.body.date;
@@ -131,25 +148,113 @@ app.post('/getAvaibleBarberinDay', (req, res) => {
 app.post('/CheckLogin', (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-  console.log(email,password);
+  
   db_connection.query("CALL CheckBarberLogin(?, ?);", [email, password], (error, results, fields) => {
       if (error) {
           console.error('Error:', error);
           res.status(500).send('Internal Server Error');
           return;
       }
-      console.log(results[0]);
+      
       // Проверяем, есть ли пользователь с такими данными
-      if (results[0][0].IsValidLogin === 1) {
+      if (results[0][0].BarberID !== null) {
           // Пользователь найден, создаем для него сессию
           req.session.user = { id: results[0][0].id, email: email };
-          res.json({ success: true });
-      } else {
-          // Пользователь не найден
-          res.json({ success: false });
-      }
+          
+      } 
+      res.json(results[0][0]);
   });
 });
+app.post('/GetAppointmentsForBarberOnDate', (req, res) => {
+  const date = req.body.date;
+  const barberId = req.body.barberId;
+  console.log(date,barberId)
+  
+  db_connection.query("CALL GetAppointmentsForBarberOnDate(?, ?);", [barberId , date], (error, results, fields) => {
+      if (error) {
+          console.error('Error:', error);
+          res.status(500).send('Internal Server Error');
+          return;
+      }
+      
+      console.log(results[0])
+      res.json(results[0]);
+  });
+});
+
+app.post('/GetAppointmentsForBarber', (req, res) => {
+  const date = req.body.date;
+  const barberId = req.body.barberId;
+  const time = req.body.time;
+  console.log(date,barberId)
+  
+  db_connection.query("CALL GetSpecificAppointmentForBarber(?,?, ?);", [barberId , date,time], (error, results, fields) => {
+      if (error) {
+          console.error('Error:', error);
+          res.status(500).send('Internal Server Error');
+          return;
+      }
+      
+      console.log(results[0])
+      res.json(results[0]);
+  });
+});
+
+app.post('/UpdateAppointmentStatus', (req, res) => {
+  const appointmentID = req.body.appointmentID;
+  const newStatus = req.body.newStatus;
+
+  db_connection.query("CALL UpdateAppointmentStatus(?, ?);", [appointmentID, newStatus], (error, results, fields) => {
+      if (error) {
+          console.error('Error:', error);
+          res.status(500).send('Internal Server Error');
+          return;
+      }
+
+      db_connection.query("Call GetClientDiscountInfo(?);", [appointmentID], (error, results, fields) => {
+        if (error) {
+            console.error('Error:', error);
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+    
+        console.log("Query results:", results[0][0].email);
+
+          if (results.length > 0) {
+              const clientEmail = results[0][0].email;
+              const discountName = results[0][0].name;
+              const discountValue = results[0][0].discount;
+              const discountCardId = results[0][0].discount_card_id;
+
+              const mailOptions = {
+                  from: 'gchat5571@gmail.com',
+                  to: clientEmail,
+                  subject: 'Ваша скидочная карта обновлена',
+                  text: `Уважаемый клиент, ваша скидочная карта '${discountName}' теперь имеет скидку ${discountValue}%.`
+              };
+
+              transporter.sendMail(mailOptions, (mailError, info) => {
+                  if (mailError) {
+                      console.log('Email error:', mailError);
+                      res.status(500).send('Ошибка при отправке email');
+                  } else {
+                      console.log('Email sent: ' + info.response);
+                      // Обновление статуса email_sent после отправки email
+                      db_connection.query("UPDATE discount_card SET email_sent = FALSE WHERE discount_card_id = ?;", [discountCardId], (error, updateResults, fields) => {
+                          if (error) {
+                              console.error('Error updating email_sent:', error);
+                          }
+                      });
+                      res.status(200).send('Email отправлен и статус обновлен');
+                  }
+              });
+          } else {
+              res.json({success: true});
+          }
+      });
+  });
+});
+
 
 app.get('/barberAcount.html', checkAuth, (req, res) => {
   res.sendFile(path.join(__dirname, 'security', 'barberAcount.html'));
@@ -212,7 +317,24 @@ app.post('/SendForm', (req, res) => {
       res.json(results); // Надсилаємо результати на клієнтську сторону
     });
   });
-
+  app.post('/checkCoupon', (req, res) => {
+    const couponName = req.body.couponName;
+    const phone = req.body.phone;
+    console.log(couponName)
+    if (couponName.length >= 15) {
+        db_connection.query('SELECT dc.discount  FROM discount_card dc, clients c WHERE dc.name = ? AND c.phone_number = ?', [couponName,phone], (error, results) => {
+            if (error) {
+                console.error('Error:', error);
+                res.status(500).send('Internal Server Error');
+                return;
+            }
+            console.log(results[0]);
+            res.json(results[0]);
+        });
+    } else {
+        res.json({ message: "Coupon name too short" });
+    }
+});
 
 // Запускаємо сервер 
 app.listen(port, () => {

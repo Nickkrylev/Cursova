@@ -18,11 +18,12 @@ document.getElementById('loginForm').addEventListener('submit', function(event){
     .then(response => response.json())
     .then(data => {
        
-        console.log(data);
-    
+        console.log(data.BarberID);
+ 
        // Перевірка на правильність електронної пошти і пароля
-    if(data.success){
+    if(data.BarberID != null){
         // Якщо дані правильні, перенаправляємо на сторінку користувача
+       sessionStorage.setItem('BarberIDLogin', data.BarberID );
        window.location.href = 'barberAcount.html';
     } else {
         // Якщо дані неправильні, виводимо повідомлення

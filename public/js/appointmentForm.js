@@ -106,3 +106,43 @@ function mesageBox(){
 
 }
 
+document.getElementById('couponInput').addEventListener('input', function(e) {
+    var couponName = e.target.value;
+    var phone = document.forms[0]["phone"].value;
+    if (couponName.length >= 15) {
+        fetch('/checkCoupon', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ couponName: couponName , phone:phone}),
+        })
+        .then(response => response.json()) // Преобразование ответа в JSON
+        .then(data => {
+            console.log(data)
+            if (data && data.discount) { // Проверка, есть ли данные о скидке
+                var oldPriceElement = document.getElementById('selectedPrice');
+                console.log(data.discount);
+                var newPrice = calculateDiscountedPrice(oldPriceElement.textContent, data.discount);
+                oldPriceElement.style.textDecoration = 'line-through';
+                oldPriceElement.insertAdjacentHTML('afterend', '<span>' + newPrice + '</span>');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    }
+});
+
+function calculateDiscountedPrice(originalPriceStr, discount) {
+    // Извлекаем числовую часть из строки
+    var numericPart = parseFloat(originalPriceStr.replace(/[^\d.]/g, ''));
+
+    console.log(numericPart); // Числовая часть цены
+
+    // Вычисляем новую цену с учетом скидки
+    var discountedPrice = numericPart - (numericPart * (discount / 100));
+
+    // Округляем до двух знаков после запятой
+    return parseFloat(discountedPrice.toFixed(2));
+}
