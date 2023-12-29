@@ -6,7 +6,7 @@ function createBarberCards(data) {
   container.innerHTML = ''; // Clear existing content
 
   const barberCategoryMap = {
-    "trainee": "Стажор",
+    "trainee": "Стажер",
     "senior_barber": "Старший барбер",
     "barber": "Барбер",
     "expert": "Експерт"

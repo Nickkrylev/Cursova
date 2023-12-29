@@ -17,7 +17,7 @@ let currentBarberIndex = 0;
 
 
 const barberCategory = {
-    "trainee":"Стажор",
+    "trainee":"Стажер",
     "senior_barber":"Старший барбер",
     "barber":"Барбер",
     "expert":"Експерт"
